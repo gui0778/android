@@ -71,22 +71,18 @@ public class DBdaoImpl extends SQLiteOpenHelper implements DBdao {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
 	public void createTabName(String tabname) {
 		// TODO Auto-generated method stub
 			getWriteable().execSQL(tabname);
 	}
-	@Override
 	public void add(String sql) {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
 	public void del(String sql) {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
 	public void execSQL(String sql, Object[] bindArgs) {
 		// TODO Auto-generated method stub
 		

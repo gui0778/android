@@ -45,7 +45,6 @@ public class DataBaseManagerActivity extends Activity implements OnClickListener
 		us=new UserService(this,null);
 
     }
-	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch(v.getId())
