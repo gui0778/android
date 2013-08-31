@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="" class="">
+    <property name="" type="int" maxlength="10" default="" isprikey="false" isforkey="false"></property>    
+</table>
