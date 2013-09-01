@@ -9,6 +9,7 @@ public class DBHelper {
 	{
 		StringBuffer sb=new StringBuffer();
 		Class<?> cl=object.getClass();
+		String name=cl.getName();
 		Field[] fields=cl.getFields();
 		for(Field f:fields)
 		{
@@ -44,5 +45,16 @@ public class DBHelper {
 		sb=sb.replace(0, 4, "");
 		return sb.toString();
 	}
+	public static String getQueryStringForObject(String tablename,Object object)
+	{
+		StringBuffer sb=new StringBuffer();
+		sb.append("select * from "+tablename+" where ");
+		sb.append(getWhereForObject(object));
+		return sb.toString();
+
+		
+		
+	}
+	
 
 }
