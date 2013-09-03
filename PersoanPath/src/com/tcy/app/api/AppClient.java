@@ -35,7 +35,6 @@ import org.apache.http.util.EntityUtils;
 
 import com.tcy.app.AppContext;
 
-import android.net.http.*;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -71,11 +70,11 @@ public class AppClient {
 		ua.append('/'
 				+ AppContext.getInstance().getPackageInfo().versionName
 				+ '_'
-				+ AppContext.getInstance().getPackageInfo().versionCode);// App版本
-		ua.append("/Android");// 手机系统平台
-		ua.append("/" + android.os.Build.VERSION.RELEASE);// 手机系统版本
-		ua.append("/" + android.os.Build.MODEL); // 手机型号
-		//ua.append("/" + AppContext.getInstance().getAppId());// 客户端唯一标识
+				+ AppContext.getInstance().getPackageInfo().versionCode);// App鐗堟湰
+		ua.append("/Android");// 鎵嬫満绯荤粺骞冲彴
+		ua.append("/" + android.os.Build.VERSION.RELEASE);// 鎵嬫満绯荤粺鐗堟湰
+		ua.append("/" + android.os.Build.MODEL); // 鎵嬫満鍨嬪彿
+		//ua.append("/" + AppContext.getInstance().getAppId());// 瀹㈡埛绔敮涓�爣璇�
 		appUserAgent = ua.toString();
 		
 		
@@ -403,7 +402,7 @@ public class AppClient {
 
 		DefaultHttpClient httpClient = new DefaultHttpClient(httpParameters);
 
-		// 设置 字符集
+		// 璁剧疆 瀛楃闆�
 		httpClient.getParams().setParameter(HTTP.CONTENT_ENCODING, HTTP.UTF_8);
 		return httpClient;
 	}
