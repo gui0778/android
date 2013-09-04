@@ -20,6 +20,7 @@ public class AppContext extends Application implements MKGeneralListener {
 	public BMapManager bMapManager;
 	public  String TAG="AppContext";
 	private static AppContext instance;
+	public static final String auth_server="";
 	@Override
 	public void onCreate() {
 		// TODO Auto-generated method stub

@@ -20,14 +20,26 @@ public class Welcome extends Activity {
 		imagev=(ImageView)findViewById(R.id.show_imageview);
 		imagev.setBackgroundResource(R.anim.welcome);
 		rocketAnimation = (AnimationDrawable) imagev.getBackground();
-		rocketAnimation.start();
+		new Thread(new Runnable()
+		{
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				
+				
+			}
+			
+		}).start();
+		
 	}
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		// TODO Auto-generated method stub
 		  if (event.getAction() == MotionEvent.ACTION_DOWN) {
-			    
+			  rocketAnimation.stop();
+			  rocketAnimation.start();
 			    return true;
 			  }
 		return super.onTouchEvent(event);

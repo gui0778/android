@@ -17,6 +17,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
+import org.apache.http.ParseException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpDelete;
@@ -32,6 +33,8 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.tcy.app.AppContext;
 
@@ -52,8 +55,16 @@ public class AppClient {
 	private ArrayList<NameValuePair> headers;
 	private String server = "";
 
-	private String appToken;
+	private static String appToken;
+	private static String acces_token="";
 
+	public static String getAcces_token() {
+		return acces_token;
+	}
+
+	public static void setAcces_token(String acces_token) {
+		AppClient.acces_token = acces_token;
+	}
 	private String appUserAgent;
 
 	public AppClient(String server) {
@@ -66,7 +77,7 @@ public class AppClient {
 		
 		headers = new ArrayList<NameValuePair>();
 		
-		StringBuilder ua = new StringBuilder("IME");
+		StringBuilder ua = new StringBuilder();
 		ua.append('/'
 				+ AppContext.getInstance().getPackageInfo().versionName
 				+ '_'
@@ -405,6 +416,36 @@ public class AppClient {
 		// 璁剧疆 瀛楃闆�
 		httpClient.getParams().setParameter(HTTP.CONTENT_ENCODING, HTTP.UTF_8);
 		return httpClient;
+	}
+	public JSONObject login(String name,String pass)
+	{
+		String query = "/open_api.php?grant_type=%s&client_id=%s&client_secret=%s&scope=%s&username=%s&password=%s";
+		query = String.format(query,"login","phone","api407","path", name, pass);
+    	
+		HttpResponse res = get(query);
+    	if(res.getStatusLine().getStatusCode() == HttpStatus.SC_OK){
+    		HttpEntity entity = res.getEntity();
+            if (entity != null) {
+            	String sres;
+				try {
+					sres = EntityUtils.toString(entity, "utf-8");
+					Log.d(TAG, sres);
+					return new JSONObject(sres);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            	
+            }	            
+    		
+    	}
+    	return null;
 	}
 
 	
